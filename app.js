@@ -7,17 +7,101 @@ class OracleBoneGame {
         this.currentImageSrc = null;
         this.defaultImages = [
             { 
-                name: 'oracle1.png', 
-                url: 'https://pplx-res.cloudinary.com/image/upload/v1752807440/pplx_project_search_images/ffd78b5863216c814d6c81e56e7ec318ab688b93.jpg'
+                name: '人.svg', 
+                url: '人.svg'
             },
             { 
-                name: 'oracle2.png', 
-                url: 'https://pplx-res.cloudinary.com/image/upload/v1752807441/pplx_project_search_images/dffa6ee79b21374586ab7e2c50304996c1e6084e.jpg'
+                name: '兔.svg', 
+                url: '兔.svg'
             },
             { 
-                name: 'oracle3.png', 
-                url: 'https://pplx-res.cloudinary.com/image/upload/v1752807442/pplx_project_search_images/53c4cc7db2ba2661d6e59726f02d606fa07853dc.jpg'
-            }
+                name: '刀.svg', 
+                url: '刀.svg'
+            },
+            { 
+                name: '口.svg', 
+                url: '口.svg'
+            },
+            { 
+                name: '土.svg', 
+                url: '土.svg'
+            },
+            { 
+                name: '弓.svg', 
+                url: '弓.svg'
+            },
+            { 
+                name: '心.svg', 
+                url: '心.svg'
+            },
+            { 
+                name: '日.svg', 
+                url: '日.svg'
+            },
+            { 
+                name: '月.svg', 
+                url: '月.svg'
+            },
+            { 
+                name: '木.svg', 
+                url: '木.svg'
+            },
+            { 
+                name: '水.svg', 
+                url: '水.svg'
+            },
+            { 
+                name: '火.svg', 
+                url: '火.svg'
+            },
+            { 
+                name: '牛.svg', 
+                url: '牛.svg'
+            },
+            { 
+                name: '田.svg', 
+                url: '田.svg'
+            },
+            { 
+                name: '竹.svg', 
+                url: '竹.svg'
+            },
+            { 
+                name: '羊.svg', 
+                url: '羊.svg'
+            },
+            { 
+                name: '豬.svg', 
+                url: '豬.svg'
+            },
+            { 
+                name: '豹.svg', 
+                url: '豹.svg'
+            },
+            { 
+                name: '雞.svg', 
+                url: '雞.svg'
+            },
+            { 
+                name: '馬.svg', 
+                url: '馬.svg'
+            },
+            { 
+                name: '魚.svg', 
+                url: '魚.svg'
+            },
+            { 
+                name: '鳥.svg', 
+                url: '鳥.svg'
+            },
+            { 
+                name: '鹿.svg', 
+                url: '鹿.svg'
+            },
+            { 
+                name: '龍.svg', 
+                url: '龍.svg'
+            },
         ];
         
         this.countdownInterval = null;
