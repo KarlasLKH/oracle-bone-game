@@ -155,7 +155,7 @@ class OracleBoneGame {
         const qrContainer = this.elements.qrCode;
         if (!qrContainer) return;
         
-        const gameURL = `${window.location.origin}${window.location.pathname}?mode=player`;
+        const gameURL = `https://karlaslkh.github.io/oracle-bone-game/?mode=player`;
         console.log('Generating QR code for:', gameURL);
         
         qrContainer.innerHTML = '';
