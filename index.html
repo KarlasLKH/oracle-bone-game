@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甲骨文攤位遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <!-- QR Code / Home Section -->
+        <div class="qr-section" id="qrSection">
+            <div class="header">
+                <h1>甲骨文攤位遊戲</h1>
+                <p class="subtitle">掃描 QR code 或直接開始遊戲</p>
+            </div>
+            
+            <div class="qr-container">
+                <div class="qr-code" id="qrCode"></div>
+                <p class="qr-description">玩家可使用手機掃描 QR code 進入專屬遊戲頁面</p>
+                <div class="flex flex-col gap-16">
+                    <button class="btn btn--primary" id="qrStartGameBtn">直接開始遊戲</button>
+                    <button class="btn btn--secondary" id="showSetupBtn">管理圖片庫</button>
+                    <button class="btn btn--outline" id="showInstructionsBtn">使用說明</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="instructions-section" id="instructionsSection" style="display:none;">
+            <div class="header">
+                <h1>使用說明</h1>
+                <p class="subtitle">遊戲規則與操作指南</p>
+            </div>
+
+            <div class="instructions-content">
+                <div class="instruction-card">
+                    <h3>遊戲規則</h3>
+                    <ul>
+                        <li>系統會隨機選擇一張甲骨文字圖片</li>
+                        <li>圖片顯示 5 秒後自動消失</li>
+                        <li>黑屏後可選擇重看一次或開始新遊戲</li>
+                        <li>挑戰記憶力，嘗試記住甲骨文字的形狀</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-card">
+                    <h3>操作指南</h3>
+                    <ul>
+                        <li>點擊「管理圖片庫」可上傳自己的甲骨文字圖片</li>
+                        <li>掃描 QR code 可在手機上遊玩</li>
+                        <li>黑屏時點擊「重看一次」可再次觀看相同圖片</li>
+                        <li>點擊「開始新遊戲」可隨機選擇新的圖片</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-card">
+                    <h3>圖片要求</h3>
+                    <ul>
+                        <li>建議上傳清晰的甲骨文字圖片</li>
+                        <li>支援 JPG、PNG 等常見圖片格式</li>
+                        <li>圖片會自動調整大小適應屏幕</li>
+                        <li>系統內建 3 張示例圖片</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="instructions-controls">
+                <button class="btn btn--primary" id="backToQRFromInstructions">返回主頁</button>
+            </div>
+        </div>
+
+        <!-- Game Setup Section -->
+        <div class="game-setup" id="gameSetup" style="display:none;">
+            <div class="header">
+                <h1>管理圖片庫</h1>
+                <p class="subtitle">上傳圖片或使用預設圖片</p>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="image-library">
+                    <div class="section-header">
+                        <h2>圖片庫</h2>
+                        <span class="image-count" id="imageCount">3 張圖片</span>
+                    </div>
+                    
+                    <div class="upload-section">
+                        <input type="file" id="imageInput" multiple accept="image/*" aria-label="上傳圖片">
+                        <label for="imageInput" class="btn btn--secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17,8 12,3 7,8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            上傳圖片
+                        </label>
+                    </div>
+
+                    <div class="image-table-container">
+                        <table class="image-table" id="imageTable">
+                            <thead>
+                                <tr>
+                                    <th>編號</th>
+                                    <th>檔案名稱</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="imageTableBody">
+                                <!-- 由 JavaScript 動態插入 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <div class="game-status" id="gameStatus">
+                        <div class="status-message">準備開始遊戲</div>
+                    </div>
+                    
+                    <button class="btn btn--primary btn--lg btn--full-width" id="startGameBtn" aria-label="開始遊戲">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5,3 19,12 5,21"></polygon>
+                        </svg>
+                        開始遊戲
+                    </button>
+                    
+                    <button class="btn btn--outline btn--full-width" id="backToQRBtn" aria-label="返回首頁">
+                        返回首頁
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Entry Section (when visiting ?mode=player) -->
+        <div class="game-entry" id="gameEntry" style="display:none;">
+            <div class="header">
+                <h1>甲骨文攤位遊戲</h1>
+                <p class="subtitle">歡迎參加遊戲！</p>
+            </div>
+
+            <div class="entry-controls">
+                <button class="btn btn--primary btn--lg btn--full-width" id="playerStartGameBtn" aria-label="開始遊戲">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                    開始遊戲
+                </button>
+                
+                <button class="btn btn--outline btn--full-width" id="playerInstructionsBtn" aria-label="查看說明">
+                    使用說明
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Display Screen -->
+    <div class="game-screen" id="gameScreen">
+        <div class="image-display" id="imageDisplay">
+            <img id="gameImage" alt="甲骨文字" />
+            <div class="countdown" id="countdown">5</div>
+        </div>
+        
+        <div class="black-screen" id="blackScreen">
+            <div class="black-screen-controls">
+                <button class="btn btn--primary btn--lg" id="replayBtn" aria-label="重看一次">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    重看一次
+                </button>
+                
+                <button class="btn btn--secondary btn--lg" id="newGameBtn" aria-label="開始新遊戲">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                    開始新遊戲
+                </button>
+                
+                <button class="btn btn--outline btn--lg" id="backToEntryBtn" aria-label="返回主頁">
+                    返回主頁
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Generator Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
